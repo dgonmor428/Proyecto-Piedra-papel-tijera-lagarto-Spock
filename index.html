@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="David González Moreno">
     <meta name="description" content="Proyecto Piedra, papel, tijera, lagarto, Spock">
+    <link rel="icon" href="Imagenes/spock-hand-gesture.svg">
     <title>Piedra, papel, tijera, lagarto, Spock</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -22,20 +24,75 @@
             <div class = "panel-seleccion-jugada">
                 <h2>Elije tu jugada</h2>
                 <div class = "contenedor-elecciones-juego">
-                    <div class = "boton-eleccion-jugada">
-                        <div class = "icono-jugada">
-                            <p>🪨piedra</p>
-    
+                    <button class = "boton-eleccion-jugada">
+                        <p class = "icono-jugada">🪨</p>
+                            <p>Piedra</p>
+                        </button>
+                    <button class = "boton-eleccion-jugada">
+                        <p class = "icono-jugada">📄</p>
+                            <p>Papel</p>
+                        </button>
+                    <button class = "boton-eleccion-jugada">
+                        <p class = "icono-jugada">✂️</p>
+                            <p>Tijera</p>
+                        </button>
+                    <button class = "boton-eleccion-jugada">
+                        <p class = "icono-jugada">🦎</p>
+                            <p>Lagarto</p>
+                        </button>
+                    <button class = "boton-eleccion-jugada">
+                        <p class = "icono-jugada">🖖</p>
+                            <p>Spock</p>
+                        </button>
+                    </div>
+                </div>
+                <div class = "panel-batalla">
+                    <h2>Batalla</h2>
+                    <div class = "contenedor-jugadores">
+                        <div class = "jugador">
+                            <div class = "etiqueta-jugador">
+                                <p>Tú</p>
+                            </div>
+                            <div class = "mostrar-jugada">
+                                <div class = "placeholder">?</div>
+                            </div>  
+                        </div>
+                        <div class = "vs-circle">VS</div>
+                        <div class = "jugador">
+                            <div class = "etiqueta-jugador">
+                                <p>CPU</p>
+                            </div>
+                                <div class = "mostrar-jugada">
+                                    <div class = "placeholder">?</div>
+                                </div>  
                         </div>
                     </div>
                 </div>
-            </div>
-
         </div>
+        <div class = "contenedor-resultado">
+            <div class = "resultados">
+                <div class = "mensaje-resultado">Estadísticas del juego</div>
+            </div>
+            <div class = "estadisticas-juego">
+                <div class = "panel-estadistica">
+                    <div class = "valor-estadistica">0</div>
+                    <div class = "etiqueta-estadistica">Victoria</div>
+                </div>
+                <div class = "panel-estadistica">
+                    <div class = "valor-estadistica">0</div>
+                    <div class = "etiqueta-estadistica">Empate</div>
+                </div>
+                <div class = "panel-estadistica">
+                    <div class = "valor-estadistica">0</div>
+                    <div class = "etiqueta-estadistica">Derrota</div>
+                </div>
+            </div>
+        </div>  
     </main>
     <footer>
         <p>Proyecto evaluación RA 03 - Lenguajes de marcas y sistemas de gestión de información</p>
         <p>Proyecto realizado por: David González Moreno (Declaro que no he usado IA en el proyecto)</p>
     </footer>
+<script src="JS/javascript.js"></script>
 </body>
 </html>
