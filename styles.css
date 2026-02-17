@@ -54,8 +54,8 @@
 
     main {
         /* Aquí defino que el main tenga una transición o efecto de opacidad */
-        /*opacity: 0;
-        transition: opacity 0.25s ease-in-out;*/
+        opacity: 0;
+        transition: opacity 0.25s ease-in-out;
 
         flex: 1;                  /* Hace que el contenido de la etiqueta main crezca para llenar el espacio disponible ¡¡¡IMPORTANTE!!!*/
         display: flex;
