@@ -31,10 +31,8 @@ function inicializarJuego() {
 }
 function jugar(eleccionUsuario) {
     const eleccionCPU = obtenerEleccionCPU();
-
     console.log(eleccionUsuario);
     console.log(eleccionCPU);
-    //Mostrar jugada
     mostrar_jugada[0].textContent = eleccionUsuario;
     mostrar_jugada[1].textContent = eleccionCPU;
     const resultado = calcularResultadoJugada(eleccionUsuario, eleccionCPU);
@@ -44,15 +42,15 @@ function obtenerEleccionCPU() {
     const numero = Math.floor(Math.random() * 5);
 
     if (numero === 0) {
-        return "Piedra";
+        return "🪨";
     } else if (numero === 1) {
-        return "Papel";
+        return "📄";
     } else if (numero === 2) {
-        return "Tijera";
+        return "✂️";
     } else if (numero === 3) {
-        return "Lagarto";
+        return "🦎";
     } else {
-        return "Spock";
+        return "🖖";
     }
 }
 function mostrarEleccion(display, eleccion, jugador) {
@@ -66,43 +64,43 @@ function calcularResultadoJugada(usuario, cpu) {
         return "empate";
     }
 
-    if (usuario == "Piedra" && cpu == "Tijera") {
+    if (usuario == "🪨" && cpu == "✂️") {
         return "ganador";
     }
 
-    if (usuario == "Piedra" && cpu == "Lagarto") {
+    if (usuario == "🪨" && cpu == "🦎") {
         return "ganador";
     }
 
-    if (usuario == "Papel" && cpu == "Piedra") {
+    if (usuario == "📄" && cpu == "🪨") {
         return "ganador";
     }
 
-    if (usuario == "Papel" && cpu == "Spock") {
+    if (usuario == "📄" && cpu == "🖖") {
         return "ganador";
     }
 
-    if (usuario == "Tijera" && cpu == "Papel") {
+    if (usuario == "✂️" && cpu == "📄") {
         return "ganador";
     }
 
-    if (usuario == "Tijera" && cpu == "Lagarto") {
+    if (usuario == "✂️" && cpu == "🦎") {
         return "ganador";
     }
 
-    if (usuario == "Lagarto" && cpu == "Papel") {
+    if (usuario == "🦎" && cpu == "📄") {
         return "ganador";
     }
 
-    if (usuario == "Lagarto" && cpu == "Spock") {
+    if (usuario == "🦎" && cpu == "🖖") {
         return "ganador";
     }
 
-    if (usuario == "Spock" && cpu == "Piedra") {
+    if (usuario == "🖖" && cpu == "🪨") {
         return "ganador";
     }
 
-    if (usuario == "Spock" && cpu == "Tijera") {
+    if (usuario == "🖖" && cpu == "✂️") {
         return "ganador";
     }
     return "perdedor";
