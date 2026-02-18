@@ -37,6 +37,7 @@ function jugar(eleccionUsuario) {
     mostrar_jugada[1].textContent = eleccionCPU;
     const resultado = calcularResultadoJugada(eleccionUsuario, eleccionCPU);
     console.log(resultado);
+
 }
 function obtenerEleccionCPU() {
     const numero = Math.floor(Math.random() * 5);
@@ -53,54 +54,35 @@ function obtenerEleccionCPU() {
         return "🖖";
     }
 }
-function mostrarEleccion(display, eleccion, jugador) {
-
+function mostrarEleccion(mostrar_jugada, eleccion, jugador) {
+        mostrar_jugada.textContent = eleccion;
 }
 function reiniciarDisplays() {
 
 }
 function calcularResultadoJugada(usuario, cpu) {
+    
     if (usuario == cpu) {
         return "empate";
-    }
-
-    if (usuario == "🪨" && cpu == "✂️") {
+    } else if (usuario == "🪨" && cpu == "✂️") {
         return "ganador";
-    }
-
-    if (usuario == "🪨" && cpu == "🦎") {
+    } else if (usuario == "🪨" && cpu == "🦎") {
         return "ganador";
-    }
-
-    if (usuario == "📄" && cpu == "🪨") {
+    } else if (usuario == "📄" && cpu == "🪨") {
         return "ganador";
-    }
-
-    if (usuario == "📄" && cpu == "🖖") {
+    } else if (usuario == "📄" && cpu == "🖖") {
         return "ganador";
-    }
-
-    if (usuario == "✂️" && cpu == "📄") {
+    } else if (usuario == "✂️" && cpu == "📄") {
         return "ganador";
-    }
-
-    if (usuario == "✂️" && cpu == "🦎") {
+    } else if (usuario == "✂️" && cpu == "🦎") {
         return "ganador";
-    }
-
-    if (usuario == "🦎" && cpu == "📄") {
+    } else if (usuario == "🦎" && cpu == "📄") {
         return "ganador";
-    }
-
-    if (usuario == "🦎" && cpu == "🖖") {
+    } else if (usuario == "🦎" && cpu == "🖖") {
         return "ganador";
-    }
-
-    if (usuario == "🖖" && cpu == "🪨") {
+    } else if (usuario == "🖖" && cpu == "🪨") {
         return "ganador";
-    }
-
-    if (usuario == "🖖" && cpu == "✂️") {
+    } else if (usuario == "🖖" && cpu == "✂️") {
         return "ganador";
     }
     return "perdedor";
@@ -116,13 +98,13 @@ function actualizarContadores() {
 /**
  * Hasta que no se haga lo demás al completo no comienzo esta parte
  */
-function mostrarReglas() {
+/*function mostrarReglas() {
 
 }
 function resetearJuego() {
 }
 document.addEventListener('keydown', (event) => {
-});
+});*/
 
 
     
