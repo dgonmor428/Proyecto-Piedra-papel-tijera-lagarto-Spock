@@ -37,10 +37,13 @@ function jugar(eleccionUsuario) {
     mostrar_jugada[1].textContent = eleccionCPU;
     const resultado = calcularResultadoJugada(eleccionUsuario, eleccionCPU);
     console.log(resultado);
+    console.log(victorias);
 
 }
 function obtenerEleccionCPU() {
     const numero = Math.floor(Math.random() * 5);
+
+    let numero = ["🪨","📄","✂️","🦎","🖖"]
 
     if (numero === 0) {
         return "🪨";
@@ -55,43 +58,57 @@ function obtenerEleccionCPU() {
     }
 }
 function mostrarEleccion(mostrar_jugada, eleccion, jugador) {
-        mostrar_jugada.textContent = eleccion;
+    mostrar_jugada.textContent = eleccion;
 }
 function reiniciarDisplays() {
 
 }
 function calcularResultadoJugada(usuario, cpu) {
-    
     if (usuario == cpu) {
         return "empate";
-    } else if (usuario == "🪨" && cpu == "✂️") {
-        return "ganador";
-    } else if (usuario == "🪨" && cpu == "🦎") {
-        return "ganador";
-    } else if (usuario == "📄" && cpu == "🪨") {
-        return "ganador";
-    } else if (usuario == "📄" && cpu == "🖖") {
-        return "ganador";
-    } else if (usuario == "✂️" && cpu == "📄") {
-        return "ganador";
-    } else if (usuario == "✂️" && cpu == "🦎") {
-        return "ganador";
-    } else if (usuario == "🦎" && cpu == "📄") {
-        return "ganador";
-    } else if (usuario == "🦎" && cpu == "🖖") {
-        return "ganador";
-    } else if (usuario == "🖖" && cpu == "🪨") {
-        return "ganador";
-    } else if (usuario == "🖖" && cpu == "✂️") {
-        return "ganador";
+    } else if (usuario === "🪨" && cpu === "✂️") {
+        return "gana";
+    } else if (usuario === "🪨" && cpu === "🦎") {
+        return "gana";
+    } else if (usuario === "📄" && cpu === "🪨") {
+        return "gana";
+    } else if (usuario === "📄" && cpu === "🖖") {
+        return "gana";
+    } else if (usuario === "✂️" && cpu === "📄") {
+        return "gana";
+    } else if (usuario === "✂️" && cpu === "🦎") {
+        return "gana";
+    } else if (usuario === "🦎" && cpu === "📄") {
+        return "gana";
+    } else if (usuario === "🦎" && cpu === "🖖") {
+        return "gana";
+    } else if (usuario === "🖖" && cpu === "🪨") {
+        return "gana";
+    } else if (usuario === "🖖" && cpu === "✂️") {
+        return "gana";
     }
-    return "perdedor";
+    return "pierde";
 }
 function mostrarResultadoJugada(resultado, usuario, cpu) {
 
 }
 function actualizarContadores() {
+    /*for(let i; i < valor_estadisticas.length; i++ ){
+        
+    }*/
 
+    if(resultado === "gana"){
+        victorias++
+    }
+    else if (resultado === "pierde"){
+        derrotas++
+    }
+    else if (resultado === "empate"){
+        empates++
+    }
+}
+function inicializarTooltips() {
+    
 }
 
 
