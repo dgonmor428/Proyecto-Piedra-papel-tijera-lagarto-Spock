@@ -1,0 +1,1 @@
+Los 2 botones funcionan correctamente. Aunque el problema está en el css por que no está bien la posición. 

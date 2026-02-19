@@ -24,23 +24,23 @@
             <div class = "panel-seleccion-jugada">
                 <h2>Elije tu jugada</h2>
                 <div class = "contenedor-elecciones-juego">
-                    <button class = "boton-eleccion-jugada btnPiedra">
+                    <button class = "boton-eleccion-jugada Piedra">
                         <div class = "icono-jugada">🪨</div>
                             <div class="texto-jugada">Piedra</div>
                         </button>
-                    <button class = "boton-eleccion-jugada btnPapel">
+                    <button class = "boton-eleccion-jugada Papel">
                         <div class = "icono-jugada">📄</div>
                             <div class="texto-jugada">Papel</div>
                         </button>
-                    <button class = "boton-eleccion-jugada btnTijera"> 
+                    <button class = "boton-eleccion-jugada Tijera"> 
                         <div class = "icono-jugada">✂️</div>
                             <div class="texto-jugada">Tijera</div>
                         </button>
-                    <button class = "boton-eleccion-jugada btnLagarto">
+                    <button class = "boton-eleccion-jugada Lagarto">
                         <div class = "icono-jugada">🦎</div>
                             <div class="texto-jugada">Lagarto</div>
                         </button>
-                    <button class = "boton-eleccion-jugada btnSpock">
+                    <button class = "boton-eleccion-jugada Spock">
                         <div class = "icono-jugada">🖖</div>
                             <div class="texto-jugada">Spock</div>
                         </button>
@@ -53,7 +53,7 @@
                             <div class = "etiqueta-jugador">
                                 <p>Tú</p>
                             </div>
-                            <div class = "mostrar-jugada">
+                            <div class = "mostrar-jugada usuario">
                                 <div class = "placeholder">?</div>
                             </div>  
                         </div>
@@ -62,36 +62,43 @@
                             <div class = "etiqueta-jugador">
                                 <p>CPU</p>
                             </div>
-                                <div class = "mostrar-jugada">
+                                <div class = "mostrar-jugada cpu">
                                     <div class = "placeholder">?</div>
                                 </div>  
                         </div>
                     </div>
                 </div>
         </div>
+    <div class = "ultimo-contenedor">
         <div class = "contenedor-resultado">
             <div class = "resultados">
                 <div class = "mensaje-resultado">Estadísticas del juego</div>
             </div>
             <div class = "estadisticas-juego">
                 <div class = "panel-estadistica">
-                    <div class = "valor-estadistica">0</div>
+                    <div class = "valor-estadistica victoria">0</div>
                     <div class = "etiqueta-estadistica">Victoria</div>
                 </div>
                 <div class = "panel-estadistica">
-                    <div class = "valor-estadistica">0</div>
+                    <div class = "valor-estadistica empates">0</div>
                     <div class = "etiqueta-estadistica">Empate</div>
                 </div>
                 <div class = "panel-estadistica">
-                    <div class = "valor-estadistica">0</div>
+                    <div class = "valor-estadistica derrota">0</div>
                     <div class = "etiqueta-estadistica">Derrota</div>
                 </div>
             </div>
-            <div class="btn-extra">
-                <button class="btn-reglas">Mostrar reglas</button>
-                <button class="btn-reset">Reiniciar juego</button>
-            </div> 
         </div>
+        <div class="boton-extra">
+            <button class="reglas">
+                <div class="texto-jugada">Mostrar reglas</div>
+            </button>
+            <button class="reseteo">
+                <div class="texto-jugada">Reiniciar Juego</div>
+            </button>
+        </div> 
+    </div>
+
 
     </main>
     <footer>

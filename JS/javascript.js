@@ -1,14 +1,18 @@
 //DOM
-const mostrar_jugada = document.querySelectorAll(".mostrar-jugada");
+const mostrar_jugada_usuario = document.querySelector(".usuario");
+const mostrar_jugada_cpu = document.querySelector(".cpu");
 const mensaje_resultado = document.querySelectorAll(".mensaje-resultado");
-const valor_estadisticas = document.querySelectorAll(".valor-estadistica");
-const Piedra = document.querySelector(".btnPiedra");
-const Papel = document.querySelector(".btnPapel");
-const Tijera = document.querySelector(".btnTijera");
-const Lagarto = document.querySelector(".btnLagarto");
-const Spock = document.querySelector(".btnSpock");
-const Reseteo = document.querySelector(".btn-reset");
-const Reglas = document.querySelector(".btn-reglas");
+const estadistica_victorias = document.querySelector(".victoria");
+const estadistica_empates = document.querySelector(".empates");
+const estadistica_derrotas = document.querySelector(".derrota");
+const Piedra = document.querySelector(".Piedra");
+const Papel = document.querySelector(".Papel");
+const Tijera = document.querySelector(".Tijera");
+const Lagarto = document.querySelector(".Lagarto");
+const Spock = document.querySelector(".Spock");
+const Reseteo = document.querySelector(".reseteo");
+const Reglas = document.querySelector(".reglas");
+const panelmensaje = document.querySelector(".mensaje-resultado");
 
 // Variables
 let victorias = 0;
@@ -21,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     inicializarJuego();
     inicializarTooltips();
 });
-
 // Efecto de carga inicial suave
 setTimeout(() => {
 const contenedor = document.querySelector('main');
@@ -38,6 +41,7 @@ if (contenedor) contenedor.style.opacity = '1';
 * @return {void} No devuelve ningún valor.
 */
 function inicializarJuego() {
+    //Salta por consola los comandos de inicio
     console.log("Juego inicializado correctamente");
     console.log("================================");
     console.log("Juego de Piedra, Papel, Tijera, Lagarto, Spock cargado correctamente");
@@ -66,19 +70,13 @@ function inicializarJuego() {
 * @return {void} No devuelve ningún valor.
 */
 function jugar(eleccionUsuario) {
-    reiniciarDisplays();
-
-    const eleccionCPU = obtenerEleccionCPU();
-
-    mostrarEleccion(mostrar_jugada[0], eleccionUsuario);
-    mostrarEleccion(mostrar_jugada[1], eleccionCPU);
-
-    const resultado = calcularResultadoJugada(eleccionUsuario, eleccionCPU);
-
-    mostrarResultadoJugada(resultado, eleccionUsuario, eleccionCPU);
+    const cpu = obtenerEleccionCPU();
+    mostrarEleccion(mostrar_jugada_usuario, eleccionUsuario);
+    mostrarEleccion(mostrar_jugada_cpu, cpu);
+    const resultado = calcularResultadoJugada(eleccionUsuario, cpu);
+    mostrarResultadoJugada(resultado, eleccionUsuario, cpu);
     actualizarContadores(resultado);
-
-}
+} 
 
 /**
 * @brief Genera aleatoriamente la elección de la CPU.
@@ -103,6 +101,7 @@ function obtenerEleccionCPU() {
     }
 }
 
+
 /**
 * @brief Muestra la elección de un jugador (jugador humano o CPU) en un display con icono y texto.
 *
@@ -117,18 +116,23 @@ function obtenerEleccionCPU() {
 */
 function mostrarEleccion(mostrar_jugada, eleccion, jugador) {
 
-    if (eleccion === "Piedra") emoji = "🪨";
-    else if (eleccion === "Papel") emoji = "📄";
-    else if (eleccion === "Tijera") emoji = "✂️";
-    else if (eleccion === "Lagarto") emoji = "🦎";
-    else if (eleccion === "Spock") emoji = "🖖";
-
-    mostrar_jugada.innerHTML = 
-        `<div class="icono-jugada-grande">${emoji}</div>
-        <div class="texto-jugada">${eleccion}</div>`;
-
-    mostrar_jugada.classList.add("active");
-}
+    if (eleccion === "Piedra"){
+        emoji = "🪨";
+    } 
+    else if (eleccion === "Papel"){
+        emoji = "📄";
+    } 
+    else if (eleccion === "Tijera"){
+        emoji = "✂️";
+    }
+    else if (eleccion === "Lagarto"){
+        emoji = "🦎";
+    }
+    else if (eleccion === "Spock"){
+        emoji = "🖖";
+    }
+    mostrar_jugada.innerHTML = `<div class="icono-jugada-grande">${emoji}</div> <div class="texto-jugada">${eleccion}</div>`;
+} 
 
 /**
 * @brief Reinicia los displays del juego a su estado inicial.
@@ -140,7 +144,11 @@ function mostrarEleccion(mostrar_jugada, eleccion, jugador) {
 * @return {void} No devuelve ningún valor.
 */
 function reiniciarDisplays() {
-
+    /* No consigo hacer funcionar esta función entonces no la uso en el trabajo.
+    panelMensaje.textContent = "¡Batalla!";
+    mostrar_jugada_usuario.classList.remove=(eleccionUsuario);
+    mostrar_jugada_cpu.classList.remove=(cpu);
+*/
 }
 
 /**
@@ -194,24 +202,25 @@ function calcularResultadoJugada(usuario, cpu) {
 * @return {void} No devuelve ningún valor.
 */
 function mostrarResultadoJugada(resultado, usuario, cpu) {
-    const panelMensaje = mensaje_resultado[0];
     //Como no elimine los datos anteriores los colores no se modifican
-    panelMensaje.classList.remove("ganador", "perdedor", "empate");
+    panelmensaje.classList.remove("ganador");
+    panelmensaje.classList.remove("perdedor"); 
+    panelmensaje.classList.remove("empate");
 
         switch (resultado) {
         case "gana":
-            panelMensaje.textContent = `¡Has ganado! ${usuario} vence a ${cpu}`;
-            panelMensaje.classList.add("ganador");
+            panelmensaje.textContent = `¡Has ganado! ${usuario} vence a ${cpu}`;
+            panelmensaje.classList.add("ganador");
             break;
 
         case "pierde":
-            panelMensaje.textContent = `¡Has perdido! ${cpu} vence a ${usuario}`;
-            panelMensaje.classList.add("perdedor");
+            panelmensaje.textContent = `¡Has perdido! ${cpu} vence a ${usuario}`;
+            panelmensaje.classList.add("perdedor");
             break;
 
         case "empate":
-            panelMensaje.textContent = `¡Empate! Ambos habéis elegido ${usuario}`;
-            panelMensaje.classList.add("empate");
+            panelmensaje.textContent = `¡Empate! Ambos habéis elegido ${usuario}`;
+            panelmensaje.classList.add("empate");
             break;
     }
 }
@@ -225,7 +234,6 @@ function mostrarResultadoJugada(resultado, usuario, cpu) {
 * @return {void} No devuelve ningún valor.
 */
 function actualizarContadores(resultado) {
-
     if (resultado === "gana") {
         victorias++;
     } else if (resultado === "pierde") {
@@ -233,9 +241,9 @@ function actualizarContadores(resultado) {
     } else if (resultado === "empate") {
         empates++;
     }
-    valor_estadisticas[0].textContent = victorias;
-    valor_estadisticas[1].textContent = empates; 
-    valor_estadisticas[2].textContent = derrotas;
+    estadistica_victorias.textContent = victorias;
+    estadistica_empates.textContent = empates;
+    estadistica_derrotas.textContent = derrotas;
 }
 
 /**
@@ -248,6 +256,7 @@ function actualizarContadores(resultado) {
 * @return {void} No devuelve ningún valor.
 */
 function inicializarTooltips() {
+    //Para que aparezca los titulos cuando deje el puntero del ratón encima de los botones de juego
     Piedra.title = "Piedra vence a: Tijera y Lagarto";
     Papel.title = "Papel vence a: Piedra y Spock";
     Tijera.title = "Tijera vence a: Papel y Lagarto";
@@ -267,6 +276,7 @@ function inicializarTooltips() {
 * @return {void} No devuelve ningún valor.
 */
 function mostrarReglas() {
+    //Muestra las reglas del juego por consola
     console.log("=============================================");
     console.log("Reglas del juego:");
     console.log("- Piedra aplasta a Tijera y Lagarto");
@@ -289,12 +299,13 @@ function mostrarReglas() {
 */
 
 function resetearJuego() {
+    //Pone todas las variables en 0 automáticamente (es como un reseteo)
     victorias = 0;
     derrotas = 0;
     empates = 0; 
-    valor_estadisticas[0].textContent = victorias;
-    valor_estadisticas[1].textContent = empates;
-    valor_estadisticas[2].textContent = derrotas;
+    estadistica_victorias.textContent = victorias;
+    estadistica_empates.textContent = empates;
+    estadistica_derrotas.textContent = derrotas;
 }
 
 /**
@@ -308,30 +319,20 @@ function resetearJuego() {
 * @param {KeyboardEvent} event - El evento de pulsación de tecla.
 */
 document.addEventListener('keydown', (event) => {
-    switch(event.key.toLowerCase()) {
-        case '1':
-            jugar("Piedra");
-            break;
-        case '2':
-            jugar("Papel");
-            break;
-        case '3':
-            jugar("Tijera");
-            break;
-        case '4':
-            jugar("Lagarto");
-            break;
-        case '5':
-            jugar("Spock");
-            break;
-        case 'r':
-            resetearJuego();
-            break;
-        case 's':
-            mostrarReglas();
-            break;
+    //Gracias al event.code puede detectar las teclas del teclado y le devuelvo la función que es
+    if (event.code === "Digit1") {
+        return jugar("Piedra");
+    } else if(event.code === "Digit2"){
+        return jugar("Papel")
+    } else if(event.code === "Digit3"){
+        return jugar("Tijera");
+    } else if(event.code === "Digit4"){
+        return jugar("Lagarto");
+    } else if(event.code === "Digit5"){
+        return jugar("Spock");
+    } else if(event.code === "KeyR"){
+        return resetearJuego();
+    } else if(event.code === "KeyS"){
+        return mostrarReglas();
     }
 });
-
-
-    
