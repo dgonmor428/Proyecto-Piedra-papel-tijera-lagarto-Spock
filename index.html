@@ -24,25 +24,25 @@
             <div class = "panel-seleccion-jugada">
                 <h2>Elije tu jugada</h2>
                 <div class = "contenedor-elecciones-juego">
-                    <button class = "boton-eleccion-jugada" title="Piedra vence a: Tijeta y Lagarto" data-eleccion="🪨">
-                        <p class = "icono-jugada">🪨</p>
-                            <p>Piedra</p>
+                    <button class = "boton-eleccion-jugada btnPiedra">
+                        <div class = "icono-jugada">🪨</div>
+                            <div class="texto-jugada">Piedra</div>
                         </button>
-                    <button class = "boton-eleccion-jugada" title="Papel vence a: Piedra y Spock" data-eleccion="📄">
-                        <p class = "icono-jugada">📄</p>
-                            <p>Papel</p>
+                    <button class = "boton-eleccion-jugada btnPapel">
+                        <div class = "icono-jugada">📄</div>
+                            <div class="texto-jugada">Papel</div>
                         </button>
-                    <button class = "boton-eleccion-jugada" title="Tijeta vence a: Papel y Lagarto" data-eleccion="✂️"> 
-                        <p class = "icono-jugada">✂️</p>
-                            <p>Tijera</p>
+                    <button class = "boton-eleccion-jugada btnTijera"> 
+                        <div class = "icono-jugada">✂️</div>
+                            <div class="texto-jugada">Tijera</div>
                         </button>
-                    <button class = "boton-eleccion-jugada" title="Lagarto vence a: Papel y Spock" data-eleccion="🦎">
-                        <p class = "icono-jugada">🦎</p>
-                            <p>Lagarto</p>
+                    <button class = "boton-eleccion-jugada btnLagarto">
+                        <div class = "icono-jugada">🦎</div>
+                            <div class="texto-jugada">Lagarto</div>
                         </button>
-                    <button class = "boton-eleccion-jugada" title="Spock vence a Tijera y Piedra" data-eleccion="🖖">
-                        <p class = "icono-jugada">🖖</p>
-                            <p>Spock</p>
+                    <button class = "boton-eleccion-jugada btnSpock">
+                        <div class = "icono-jugada">🖖</div>
+                            <div class="texto-jugada">Spock</div>
                         </button>
                     </div>
                 </div>
@@ -87,7 +87,12 @@
                     <div class = "etiqueta-estadistica">Derrota</div>
                 </div>
             </div>
-        </div>  
+            <div class="btn-extra">
+                <button class="btn-reglas">Mostrar reglas</button>
+                <button class="btn-reset">Reiniciar juego</button>
+            </div> 
+        </div>
+
     </main>
     <footer>
         <p>Proyecto evaluación RA 03 - Lenguajes de marcas y sistemas de gestión de información</p>

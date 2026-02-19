@@ -1,21 +1,25 @@
 //DOM
-const btnVariables = document.querySelectorAll(".boton-eleccion-jugada");
 const mostrar_jugada = document.querySelectorAll(".mostrar-jugada");
 const mensaje_resultado = document.querySelectorAll(".mensaje-resultado");
 const valor_estadisticas = document.querySelectorAll(".valor-estadistica");
-const Piedra = document.querySelectorAll(".Piedra");
-const Papel = document.querySelectorAll(".Papel");
-const Tijera = document.querySelectorAll(".Tijera");
-const Lagarto = document.querySelectorAll(".Lagarto");
-const Spock = document.querySelectorAll(".Spock");
+const Piedra = document.querySelector(".btnPiedra");
+const Papel = document.querySelector(".btnPapel");
+const Tijera = document.querySelector(".btnTijera");
+const Lagarto = document.querySelector(".btnLagarto");
+const Spock = document.querySelector(".btnSpock");
+const Reseteo = document.querySelector(".btn-reset");
+const Reglas = document.querySelector(".btn-reglas");
+
 // Variables
 let victorias = 0;
 let derrotas = 0;
 let empates = 0;
+let emoji = "";
 
 //FUNCIONAMIENTO PARA JUGAR
 document.addEventListener("DOMContentLoaded", () => {
     inicializarJuego();
+    inicializarTooltips();
 });
 
 // Efecto de carga inicial suave
@@ -34,13 +38,18 @@ if (contenedor) contenedor.style.opacity = '1';
 * @return {void} No devuelve ningún valor.
 */
 function inicializarJuego() {
-    btnVariables.forEach(boton => {
-        boton.addEventListener("click", () => {
-            const eleccion = boton.dataset.eleccion;
-            jugar(eleccion);
-
-        });
-    });
+    console.log("Juego inicializado correctamente");
+    console.log("================================");
+    console.log("Juego de Piedra, Papel, Tijera, Lagarto, Spock cargado correctamente");
+    console.log("Usa las teclas 1-5 para jugar rápidamente, o R para resetear");
+    //Botones
+    Piedra.addEventListener("click", () => jugar("Piedra"));
+    Papel.addEventListener("click", () => jugar("Papel"));
+    Tijera.addEventListener("click", () => jugar("Tijera"));
+    Lagarto.addEventListener("click", () => jugar("Lagarto"));
+    Spock.addEventListener("click", () => jugar("Spock"));
+    Reglas.addEventListener("click", mostrarReglas);
+    Reseteo.addEventListener("click", resetearJuego);
 }
 
 /**
@@ -57,14 +66,17 @@ function inicializarJuego() {
 * @return {void} No devuelve ningún valor.
 */
 function jugar(eleccionUsuario) {
+    reiniciarDisplays();
+
     const eleccionCPU = obtenerEleccionCPU();
-    console.log(eleccionUsuario);
-    console.log(eleccionCPU);
-    mostrar_jugada[0].textContent = eleccionUsuario;
-    mostrar_jugada[1].textContent = eleccionCPU;
+
+    mostrarEleccion(mostrar_jugada[0], eleccionUsuario);
+    mostrarEleccion(mostrar_jugada[1], eleccionCPU);
+
     const resultado = calcularResultadoJugada(eleccionUsuario, eleccionCPU);
-    console.log(resultado);
-    console.log(victorias);
+
+    mostrarResultadoJugada(resultado, eleccionUsuario, eleccionCPU);
+    actualizarContadores(resultado);
 
 }
 
@@ -76,18 +88,18 @@ function jugar(eleccionUsuario) {
 * @return {string} La elección de la CPU (por ejemplo: "piedra", "papel" o "tijera"...).
 */
 function obtenerEleccionCPU() {
+    //Para que la CPU escoja un numero del 0 al 4 aleatorio con la libreria de matematicas. El "floor" sirve para redondear, si no escoge un numero que no es entero.
     const numero = Math.floor(Math.random() * 5);
-
     if (numero === 0) {
-        return "🪨";
+        return "Piedra";
     } else if (numero === 1) {
-        return "📄";
+        return "Papel";
     } else if (numero === 2) {
-        return "✂️";
+        return "Tijera";
     } else if (numero === 3) {
-        return "🦎";
-    } else {
-        return "🖖";
+        return "Lagarto";
+    } else if (numero === 4){
+        return "Spock";
     }
 }
 
@@ -104,7 +116,18 @@ function obtenerEleccionCPU() {
 * @return {void} No devuelve ningún valor.
 */
 function mostrarEleccion(mostrar_jugada, eleccion, jugador) {
-    mostrar_jugada.textContent = eleccion;
+
+    if (eleccion === "Piedra") emoji = "🪨";
+    else if (eleccion === "Papel") emoji = "📄";
+    else if (eleccion === "Tijera") emoji = "✂️";
+    else if (eleccion === "Lagarto") emoji = "🦎";
+    else if (eleccion === "Spock") emoji = "🖖";
+
+    mostrar_jugada.innerHTML = 
+        `<div class="icono-jugada-grande">${emoji}</div>
+        <div class="texto-jugada">${eleccion}</div>`;
+
+    mostrar_jugada.classList.add("active");
 }
 
 /**
@@ -134,25 +157,25 @@ function reiniciarDisplays() {
 function calcularResultadoJugada(usuario, cpu) {
     if (usuario == cpu) {
         return "empate";
-    } else if (usuario === "🪨" && cpu === "✂️") {
+    } else if (usuario === "Piedra" && cpu === "Tijera") {
         return "gana";
-    } else if (usuario === "🪨" && cpu === "🦎") {
+    } else if (usuario === "Piedra" && cpu === "Lagarto") {
         return "gana";
-    } else if (usuario === "📄" && cpu === "🪨") {
+    } else if (usuario === "Papel" && cpu === "Piedra") {
         return "gana";
-    } else if (usuario === "📄" && cpu === "🖖") {
+    } else if (usuario === "Papel" && cpu === "Spock") {
         return "gana";
-    } else if (usuario === "✂️" && cpu === "📄") {
+    } else if (usuario === "Tijera" && cpu === "Papel") {
         return "gana";
-    } else if (usuario === "✂️" && cpu === "🦎") {
+    } else if (usuario === "Tijera" && cpu === "Lagarto") {
         return "gana";
-    } else if (usuario === "🦎" && cpu === "📄") {
+    } else if (usuario === "Lagarto" && cpu === "Papel") {
         return "gana";
-    } else if (usuario === "🦎" && cpu === "🖖") {
+    } else if (usuario === "Lagarto" && cpu === "Spock") {
         return "gana";
-    } else if (usuario === "🖖" && cpu === "🪨") {
+    } else if (usuario === "Spock" && cpu === "Piedra") {
         return "gana";
-    } else if (usuario === "🖖" && cpu === "✂️") {
+    } else if (usuario === "Spock" && cpu === "Tijera") {
         return "gana";
     }
     return "pierde";
@@ -171,7 +194,26 @@ function calcularResultadoJugada(usuario, cpu) {
 * @return {void} No devuelve ningún valor.
 */
 function mostrarResultadoJugada(resultado, usuario, cpu) {
+    const panelMensaje = mensaje_resultado[0];
+    //Como no elimine los datos anteriores los colores no se modifican
+    panelMensaje.classList.remove("ganador", "perdedor", "empate");
 
+        switch (resultado) {
+        case "gana":
+            panelMensaje.textContent = `¡Has ganado! ${usuario} vence a ${cpu}`;
+            panelMensaje.classList.add("ganador");
+            break;
+
+        case "pierde":
+            panelMensaje.textContent = `¡Has perdido! ${cpu} vence a ${usuario}`;
+            panelMensaje.classList.add("perdedor");
+            break;
+
+        case "empate":
+            panelMensaje.textContent = `¡Empate! Ambos habéis elegido ${usuario}`;
+            panelMensaje.classList.add("empate");
+            break;
+    }
 }
 
 /**
@@ -182,20 +224,18 @@ function mostrarResultadoJugada(resultado, usuario, cpu) {
 *
 * @return {void} No devuelve ningún valor.
 */
-function actualizarContadores() {
-    /*for(let i; i < valor_estadisticas.length; i++ ){
-        
-    }*/
+function actualizarContadores(resultado) {
 
-    if(resultado === "gana"){
-        victorias++
+    if (resultado === "gana") {
+        victorias++;
+    } else if (resultado === "pierde") {
+        derrotas++;
+    } else if (resultado === "empate") {
+        empates++;
     }
-    else if (resultado === "pierde"){
-        derrotas++
-    }
-    else if (resultado === "empate"){
-        empates++
-    }
+    valor_estadisticas[0].textContent = victorias;
+    valor_estadisticas[1].textContent = empates; 
+    valor_estadisticas[2].textContent = derrotas;
 }
 
 /**
@@ -208,7 +248,11 @@ function actualizarContadores() {
 * @return {void} No devuelve ningún valor.
 */
 function inicializarTooltips() {
-
+    Piedra.title = "Piedra vence a: Tijera y Lagarto";
+    Papel.title = "Papel vence a: Piedra y Spock";
+    Tijera.title = "Tijera vence a: Papel y Lagarto";
+    Lagarto.title = "Lagarto vence a: Papel y Spock";
+    Spock.title = "Spock vence a: Piedra y Tijera";
 }
 
 /**
@@ -223,7 +267,13 @@ function inicializarTooltips() {
 * @return {void} No devuelve ningún valor.
 */
 function mostrarReglas() {
-
+    console.log("=============================================");
+    console.log("Reglas del juego:");
+    console.log("- Piedra aplasta a Tijera y Lagarto");
+    console.log("- Papel cubre a Piedra y desautoriza a Spock");
+    console.log("- Tijera corta a Papel y decapita a Lagarto");
+    console.log("- Lagarto envenena a Spock y devora a Papel");
+    console.log("- Spock vaporiza a Piedra y rompe a Tijera");
 }
 
 /**
@@ -239,7 +289,12 @@ function mostrarReglas() {
 */
 
 function resetearJuego() {
-
+    victorias = 0;
+    derrotas = 0;
+    empates = 0; 
+    valor_estadisticas[0].textContent = victorias;
+    valor_estadisticas[1].textContent = empates;
+    valor_estadisticas[2].textContent = derrotas;
 }
 
 /**
@@ -253,7 +308,29 @@ function resetearJuego() {
 * @param {KeyboardEvent} event - El evento de pulsación de tecla.
 */
 document.addEventListener('keydown', (event) => {
- 
+    switch(event.key.toLowerCase()) {
+        case '1':
+            jugar("Piedra");
+            break;
+        case '2':
+            jugar("Papel");
+            break;
+        case '3':
+            jugar("Tijera");
+            break;
+        case '4':
+            jugar("Lagarto");
+            break;
+        case '5':
+            jugar("Spock");
+            break;
+        case 'r':
+            resetearJuego();
+            break;
+        case 's':
+            mostrarReglas();
+            break;
+    }
 });
 
 
